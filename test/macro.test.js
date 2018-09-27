@@ -47,5 +47,13 @@ pluginTester({
       // null when actually in data
       packageJson('_forTesting.isNull');
     `,
+    `
+    import packageJson from '../src/macro'
+
+    // kitchensink
+    const version = packageJson('version')
+    const name = packageJson('name')
+    const object = packageJson('_forTesting.array[1].object')
+    `,
   ],
 });

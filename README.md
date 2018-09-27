@@ -4,21 +4,39 @@
 
 ## Usage
 
-```js
-import decimal from 'package-json.macro'
+Imagine the following package.json:
 
-const a = decimal(1)
-const b = decimal(a - 3 * 4 / 5)
-const c = decimal(a - 3 + 4 - 5)
-const d = decimal(1 ** 2 ** 3)
+```json
+{
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "Haroen Viaene"
+  },
+  "_forTesting": {
+    "isNull": null,
+    "array": [
+      "hi",
+      {
+        "object": true
+      }
+    ]
+  }
+}
+```
+
+Then with this code, you'll avoid getting the whole json object in your source code
+
+```js
+import packageJson from '../src/macro'
+
+const version = packageJson('version')
+const name = packageJson('name')
+const object = packageJson('_forTesting.array[1].object')
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import { Decimal as _Decimal } from 'decimal.js';
-
-
-const a = _Decimal('1');
-const b = _Decimal(a).sub(_Decimal(_Decimal('3').mul('4')).div('5'));
-const c = _Decimal(_Decimal(_Decimal(a).sub('3')).add('4')).sub('5');
-const d = _Decimal('1').pow(_Decimal('2').pow('3'));
+const version = '1.0.0';
+const name = 'package-json.macro';
+const object = true;
 ```
