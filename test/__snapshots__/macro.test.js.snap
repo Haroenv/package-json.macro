@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`macros 1. macros: 1. macros 1`] = `
+"
+import packageJson from '../src/macro';
+
+// simple key
+const description = packageJson('description');
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// simple key
+const description = 'babel macro for reading only part of package.json';
+"
+`;
+
+exports[`macros 2. macros: 2. macros 1`] = `
+"
+import packageJson from '../src/macro';
+
+// object
+const jest = packageJson('jest');
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// object
+const jest = {
+  testEnvironment: 'node'
+};
+"
+`;
+
+exports[`macros 3. macros: 3. macros 1`] = `
+"
+import packageJson from '../src/macro';
+
+// deep object
+const jestTestEnvironment = packageJson('jest.testEnvironment');
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// deep object
+const jestTestEnvironment = 'node';
+"
+`;
+
+exports[`macros 4. macros: 4. macros 1`] = `
+"
+import packageJson from '../src/macro';
+
+// array
+const forTestingArray = packageJson('_forTesting.array');
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// array
+const forTestingArray = ['hi', {
+  object: true
+}];
+"
+`;
+
+exports[`macros 5. macros: 5. macros 1`] = `
+"
+import packageJson from '../src/macro';
+
+// array (deep)
+const forTestingArrayOne = packageJson('_forTesting.array[1]');
+const forTestingArrayOneKey = packageJson('_forTesting.array[1].object');
+const forTestingArrayOneKeyFake = packageJson('_forTesting.array[1].objectFake');
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// array (deep)
+const forTestingArrayOne = {
+  object: true
+};
+const forTestingArrayOneKey = true;
+const forTestingArrayOneKeyFake = undefined;
+"
+`;
+
+exports[`macros 6. macros: 6. macros 1`] = `
+"
+import packageJson from '../src/macro';
+
+// undefined when doesn't exist
+packageJson('_blibli_doesnt_exist');
+
+// null when actually in data
+packageJson('_forTesting.isNull');
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+// undefined when doesn't exist
+undefined;
+
+// null when actually in data
+null;
+"
+`;
