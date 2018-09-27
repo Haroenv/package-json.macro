@@ -104,12 +104,14 @@ exports[`macros 7. macros: 7. macros 1`] = `
 "
 import packageJson from '../src/macro'
 
+// kitchensink
 const version = packageJson('version')
 const name = packageJson('name')
 const object = packageJson('_forTesting.array[1].object')
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
+// kitchensink
 const version = '1.0.0';
 const name = 'package-json.macro';
 const object = true;
